@@ -1,0 +1,32 @@
+
+<div><h1>Temperature Converter</h1>
+
+<label for="temperature">Temperature:</label>
+ <input type="number" name="temp" class="temperature" value="" required minlength="4" pattern="^[0-9]+$"  placeholder="" #temp="ngModel"  [(ngModel)]="temperature" />
+ <div *ngIf="!temp?.valid && (temp?.dirty || temp?.touched)">
+  <div *ngIf="temp.errors?.['required']">
+       temp is required
+  </div>
+  <div *ngIf="temp.errors?.['pattern']">
+        Only numbers are allowed
+  </div>
+</div>
+
+<label for="unit">Unit:</label>
+<select id="unit" [(ngModel)]="selectedUnit">
+  <option value="celsius">Celsius</option>
+  <option value="fahrenheit">Fahrenheit</option>
+</select>
+
+<button (click)="convertTemperature()">Convert</button>
+
+<div *ngIf="convertedTemperature !== null" id="result">
+  Converted temperature: {{ convertedTemperature.toFixed(2) }} {{ convertedUnit }}
+</div>
+<div *ngIf="errorMessage" id="result">
+  {{ errorMessage }}
+
+  
+</div>
+</div>
+<app-url-shorten></app-url-shorten>
